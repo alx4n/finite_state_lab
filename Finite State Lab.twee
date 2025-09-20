@@ -1,0 +1,62 @@
+:: StoryTitle
+Finite State Lab
+
+
+:: StoryData
+{
+  "ifid": "13AE42BE-8FAB-4EB8-BFB8-150BFC3E3FA0",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Start",
+  "zoom": 1
+}
+
+
+:: Friends {"position":"900,800","size":"100,100"}
+You lose track of time hanging out with your friends and forget to warm up.
+{(if:$hasPracticed)[<p>Thankfully, you're already warmed up from practicing earlier and you don't make a fool of yourself during rehearsal. Your band director is very happy with the work you put in! Today was a good day.<br>[[Go to sleep and get ready for the next day->Start]]<p>]
+(else:)[<p>Your sound isn't great today and you can't get anything in tune. Your band director calls you out in front of the ensemble. How embarrassing. Hopefully tomorrows goes better.<br>[[Start over?->Start]]<p>]}
+
+
+:: Get up {"position":"875,500","size":"100,100"}
+You get up and get ready for classes. You have a test in your next class but it's a breeze and you get out early.
+[[Go practice->Practice]]
+[[Grab some lunch->Lunch]]
+
+
+:: Lunch {"position":"1000,625","size":"100,100"}
+Mmm, that lunch was tasty. After lunch you have band class.
+[[Let's go warm up->Warm up]]
+[[Let's talk to friends->Friends]]
+
+
+:: Practice {"position":"875,625","size":"100,100"}
+{(set:$hasPracticed to true)}
+You spend an hour practicing your band music. Maybe it's time to grab some lunch before band?
+[[Go to lunch->Lunch]]
+[[Go straight to band and talk with some friends->Friends]]
+
+
+:: Sleep {"position":"600,500","size":"100,100"}
+{(if:$sleep is false)[
+	<p>You go back to sleep, and the next thing you know it's 10am and you've already missed two classes. You already had a C in Music Theory, and you can't imagine your attendance will help you bring that up any time soon. <br>
+    [[Hurry to your next class->Get up]]<br>
+    [[Go back to bed->Sleep]]<p>
+	(set:$sleep to true)]
+(else:)[
+	<p>You keep going back to sleep all day and miss the rest of your classes. Good luck raising your GPA this semester. <br>
+    [[Start over->Start]]<p>]}
+
+
+
+:: Start {"position":"750,325","size":"100,100"}
+{(set: $sleep to false)
+(set: $hasPracticed to false)}
+"Ringgg ringgg." You hear your alarm going off. It's 6:30am and you have to get ready for Music Theory at 8am, but you really don't want to.
+[[Get up]]
+[[Go back to sleep->Sleep]]
+
+
+:: Warm up {"position":"1050,800","size":"100,100"}
+{(if:$hasPracticed)[<p>It's a good thing you practiced earlier. Your warm up comes easily and your band director seems really happy with you! Today was a good day.<br>[[Go to sleep and get ready for the next day->Start]]<p>]
+(else:)[<p>Man, you're really struggling today. Unfortunately, your band director notices and calls you out in front of the ensemble. So embarrassing. What a terrible way to end your day.<br>[[Start over?->Start]]<p>]}
